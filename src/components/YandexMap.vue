@@ -1,4 +1,3 @@
-
 <template>
   <div class="flex w-full justify-center">
     <div id="map" style="width: 1000px; height: 700px" class="mt-2"></div>
@@ -29,17 +28,12 @@
           ymaps.geocode(element.contact_address, {
             results: 1
           }).then((res) => {
-            // Выбираем первый результат геокодирования.
             var obj = res.geoObjects.get(0),
             coords = obj.geometry.getCoordinates();
             this.coordinates.push(coords)
             
             obj.options.set('preset', 'islands#darkBlueDotIconWithCaption');
-            // Получаем строку с адресом и выводим в иконке геообъекта.
             obj.properties.set('iconCaption', element.title);
-
-            // Добавляем первый найденный геообъект на карту.
-            // myMap.geoObjects.add(obj);
 
 
             var myPlacemark = new ymaps.Placemark(coords, {
@@ -53,11 +47,5 @@
         });
       })
     },
-
-    methods: {
-      dump: function(info) {
-        console.log(info)
-      }
-    }
   }
 </script>
